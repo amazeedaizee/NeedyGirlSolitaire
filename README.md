@@ -24,7 +24,7 @@ You can use them if you want, credit of course is much appreciated!
 <br>
 <br>
 
-This mod is fan-made and is not associatied with xemono and WSS Playground. All properties belong to their respective owners.
+This mod is fan-made and is not associated with xemono and WSS Playground. All properties belong to their respective owners.
 
 Haven't downloaded Needy Streamer Overload yet? 
 Get it here: https://store.steampowered.com/app/1451940/NEEDY_STREAMER_OVERLOAD/
