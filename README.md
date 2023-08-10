@@ -10,6 +10,10 @@ A mod that adds Solitaire as a shortcut in the desktop. Includes custom art and 
 
 ## Other
 
+Code in this repository is licensed with BSD-3. [You can view it here.](https://github.com/amazeedaizee/NeedyGirlSolitaire/blob/main/LICENSE.md)
+<br>
+<br>
+
 Card art and extra images in My Pictures is made by me!
 <br>
 <br>
