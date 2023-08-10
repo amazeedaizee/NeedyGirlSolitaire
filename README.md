@@ -14,7 +14,7 @@ Code in this repository is licensed with BSD-3. [You can view it here.](https://
 <br>
 <br>
 
-Card art and extra images in My Pictures is made by me!
+Card art and extra images in My Pictures are made by me!
 <br>
 <br>
 
