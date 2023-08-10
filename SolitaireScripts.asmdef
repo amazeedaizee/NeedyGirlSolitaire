@@ -1,0 +1,22 @@
+{
+    "name": "SolitaireScripts",
+    "rootNamespace": "SolitaireScripts",
+    "references": [
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:dc47925d1a5fa2946bdd37746b2b5d48",
+        "GUID:5c01796d064528144a599661eaab93a6",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:65abd7f100783584783d55816b7baf36",
+        "GUID:4e25d87996300834b9f1d02130e27760"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
