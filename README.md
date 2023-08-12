@@ -1,6 +1,7 @@
 # Solitaire Mod for Needy Streamer Overload
 
-![2023-05-17 (1)](https://github.com/amazeedaizee/NSOSolitaire/assets/131136866/58c2dfcf-08b5-402f-aa4e-5bfccb33f3cd)
+![2023-05-17 (1)](https://github.com/amazeedaizee/NeedyGirlSolitaire/assets/131136866/22736fea-0883-44e6-83c1-36767858fb8a)
+
 
 A mod that adds Solitaire as a shortcut in the desktop. Includes custom art and unlockable images in My Pictures.
 
