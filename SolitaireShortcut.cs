@@ -1,9 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
-using HarmonyLib;
 using ngov3;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -12,13 +9,14 @@ using UnityEngine.UI;
 
 namespace SolitaireScripts
 {
+
     public class SolitaireShortcut : MonoBehaviour
     {
         private Button _button;
         private TMP_Text _text;
         void Awake()
         {
-            _button = transform.GetComponent<Button>();   
+            _button = transform.GetComponent<Button>();
             _text = transform.GetChild(1).GetComponent<TMP_Text>();
 
             _button.onClick.AddListener(OnSubmit);
@@ -39,10 +37,10 @@ namespace SolitaireScripts
                     return;
                 case LanguageType.CN:
                 case LanguageType.TW:
-                    _text.text = "接龍"; 
+                    _text.text = "接龍";
                     return;
                 case LanguageType.KO:
-                    _text.text = "솔리테어"; 
+                    _text.text = "솔리테어";
                     return;
                 case LanguageType.IT:
                 case LanguageType.SP:
@@ -56,6 +54,7 @@ namespace SolitaireScripts
 
         void OnSubmit()
         {
+            Debug.Log("clicky!");
             if (SingletonMonoBehaviour<WindowManager>.Instance.isAppOpen((AppType)101))
             { return; }
             SingletonMonoBehaviour<WindowManager>.Instance.CleanOnCommand(false, false);
@@ -81,3 +80,4 @@ namespace SolitaireScripts
         }
     }
 }
+

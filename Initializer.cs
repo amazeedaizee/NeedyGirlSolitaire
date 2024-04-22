@@ -1,16 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using BepInEx;
-using HarmonyLib;
-using UniRx;
-using System.IO;
-using ngov3;
+﻿using BepInEx;
 using Cysharp.Threading.Tasks;
-using System;
+using HarmonyLib;
 using NGO;
+using ngov3;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using Newtonsoft.Json;
+using UniRx;
+using UnityEngine;
+
 
 namespace SolitaireScripts
 {
@@ -32,19 +30,19 @@ namespace SolitaireScripts
         }
 
         // Update is called once per frame
-      /*  void Update()
-        {
-            if (SingletonMonoBehaviour<WindowManager>.Instance.isAppOpen(AppType.Calendar))
-            {
-                SingletonMonoBehaviour<WindowManager>.Instance.CloseApp(AppType.Calendar);
-                return;
-            }
-            SingletonMonoBehaviour<WindowManager>.Instance.CleanOnCommand(false, false);
-            SingletonMonoBehaviour<WindowManager>.Instance.NewWindow_Compact(AppType.Calendar, true, true);
-            SingletonMonoBehaviour<EventManager>.Instance.SetShortcutState(false, 0.4f);
-            SingletonMonoBehaviour<TaskbarManager>.Instance.SetTaskbarInteractive(false);
-        }
-      */
+        /*  void Update()
+          {
+              if (SingletonMonoBehaviour<WindowManager>.Instance.isAppOpen(AppType.Calendar))
+              {
+                  SingletonMonoBehaviour<WindowManager>.Instance.CloseApp(AppType.Calendar);
+                  return;
+              }
+              SingletonMonoBehaviour<WindowManager>.Instance.CleanOnCommand(false, false);
+              SingletonMonoBehaviour<WindowManager>.Instance.NewWindow_Compact(AppType.Calendar, true, true);
+              SingletonMonoBehaviour<EventManager>.Instance.SetShortcutState(false, 0.4f);
+              SingletonMonoBehaviour<TaskbarManager>.Instance.SetTaskbarInteractive(false);
+          }
+        */
 
     }
 
@@ -62,10 +60,10 @@ namespace SolitaireScripts
                 __result = new AppTypeToData(true)
                 {
                     //AppNameEN = "Solitaire",
-                   // AppNameCN = "接龍",
-                   AppNameJP = "ソリティア",
-                   // AppNameKO = "솔리테어",
-                   // AppNameTW = "接龍",
+                    // AppNameCN = "接龍",
+                    AppNameJP = "ソリティア",
+                    // AppNameKO = "솔리테어",
+                    // AppNameTW = "接龍",
                     AppName = (SystemTextType)400,
                     appIcon = assetBundle.LoadAsset<Sprite>("icon_desktop_solitaire"),
                     appType = (AppType)101,
@@ -75,7 +73,7 @@ namespace SolitaireScripts
                     FirstWidth = 920,
                     InnerContent = assetBundle.LoadAsset<GameObject>("App_CustomTest")
 
-                 };
+                };
                 return false;
             }
             return true;
@@ -90,7 +88,7 @@ namespace SolitaireScripts
             UnityEngine.Object.Instantiate(assetBundle.LoadAsset<GameObject>("Solitears"), crazyShortcuts);
         }
 
-        
+
         [HarmonyPostfix]
         [HarmonyPatch(typeof(NgoEx), nameof(NgoEx.getSystemTexts))]
         static void ApplyLabel(ref List<SystemTextMaster.Param> __result)
@@ -110,18 +108,18 @@ namespace SolitaireScripts
                 BodyVn = "Solitaire"
             };
 
-            if (!__result.Exists(x=> x.Id == "400"))
+            if (!__result.Exists(x => x.Id == "400"))
             {
                 __result.Add(param);
             }
         }
-        
+
     }
 
     [HarmonyPatch]
     public class InitializeExtPics
     {
-        private static List<ResourceLocal> awardPics = new List<ResourceLocal>() 
+        private static List<ResourceLocal> awardPics = new List<ResourceLocal>()
         {
 
             new ResourceLocal
@@ -183,5 +181,6 @@ namespace SolitaireScripts
             catch { return await value; }
         }
     }
-
 }
+
+

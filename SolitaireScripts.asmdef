@@ -7,14 +7,21 @@
         "GUID:5c01796d064528144a599661eaab93a6",
         "GUID:560b04d1a97f54a4e82edc0cbbb69285",
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:65abd7f100783584783d55816b7baf36",
-        "GUID:4e25d87996300834b9f1d02130e27760"
+        "GUID:1862a0dc305c88b4da0d91b049494e46"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Assembly-CSharp.dll",
+        "BepInEx.dll",
+        "0Harmony.dll",
+        "Newtonsoft.Json.dll",
+        "Unity.VisualScripting.Antlr3.Runtime.dll",
+        "Unity.VisualScripting.IonicZip.dll",
+        "Unity.VisualScripting.YamlDotNet.dll"
+    ],
     "autoReferenced": false,
     "defineConstraints": [],
     "versionDefines": [],

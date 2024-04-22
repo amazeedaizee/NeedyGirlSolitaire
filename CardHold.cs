@@ -1,13 +1,10 @@
 using Cysharp.Threading.Tasks;
-using Cysharp.Threading.Tasks.Triggers;
 using SolitaireScripts;
-using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static Rewired.InputMapper;
 
 public class CardHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IDragHandler
 {
@@ -22,7 +19,7 @@ public class CardHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     private GameObject _cardPrefab;
     private RectTransform _rectTransform;
     private static BoxCollider2D _collider;
-    
+
 
     private bool isMainDeck;
     private bool isShowCard;
@@ -37,8 +34,8 @@ public class CardHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         selectedObject = null;
         hoveredBaseDeck = null;
         hoveredObject = null;
-        zPosition = transform.position.z-1;
-;        FirstHeldCardObject = transform.GetChild(0).gameObject;
+        zPosition = transform.position.z - 1;
+        ; FirstHeldCardObject = transform.GetChild(0).gameObject;
         _cardPrefab = InitializeWindow.assetBundle.LoadAsset<GameObject>("Card");
         _rectTransform = transform.GetComponent<RectTransform>();
         _collider = transform.GetComponent<BoxCollider2D>();
@@ -47,10 +44,10 @@ public class CardHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     }
 
     void LateUpdate()
-    {       
+    {
         Vector3 cameraPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         cameraPos.z = zPosition;
-       _rectTransform.position = cameraPos;
+        _rectTransform.position = cameraPos;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -88,7 +85,7 @@ public class CardHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
                     cardHoldStack[i].GetComponent<Image>().color = new Color(1, 1, 1, 1);
                     cardHoldStack[i].SetCardFront(selectedCardStack[i].card);
                 }
-                
+
 
             }
             return;
@@ -110,9 +107,9 @@ public class CardHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
                 return;
             }
             if (selectedObj != null && selectedBase == null)
-            {   
-                    selectedObject = selectedObj;
-                
+            {
+                selectedObject = selectedObj;
+
                 if (selectedObject.card.isStacked)
                 {
                     selectedCardStack = selectedObject.transform.parent.GetComponent<SetDeck>().GetCardStack(selectedObject);
@@ -123,7 +120,7 @@ public class CardHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
                         {
                             continue;
                         }
-                        var cardStack= Instantiate(FirstHeldCardObject, transform);
+                        var cardStack = Instantiate(FirstHeldCardObject, transform);
                         cardStack.SetActive(true);
                     }
                     return;
@@ -133,7 +130,7 @@ public class CardHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
             {
                 selectedBaseDeck = selectedBase;
             }
-                FirstHeldCardObject.GetComponent<Image>().overrideSprite = CardArtManager.SearchCardFront(card);
+            FirstHeldCardObject.GetComponent<Image>().overrideSprite = CardArtManager.SearchCardFront(card);
         }
     }
 
@@ -151,7 +148,7 @@ public class CardHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         if (isMainDeck)
         {
             MainDeck.OnClicked();
-           // Debug.Log("Main Deck Count: " + MainDeck.Cards.Count.ToString() + ", Shown Card Count: " + MainDeck.UsedCards.Count.ToString());
+            // Debug.Log("Main Deck Count: " + MainDeck.Cards.Count.ToString() + ", Shown Card Count: " + MainDeck.UsedCards.Count.ToString());
             // await CardHistoryManager.CreatePastAction(ShowCard.showCardObject, ShowCard.showCardObject.GetComponent<CardObject>()); 
             return;
         }
@@ -185,7 +182,7 @@ public class CardHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         }
         selectedBaseDeck = null;
         card = null;
-        FirstHeldCardObject.GetComponent<Image>().color = new Color(0, 0, 0, 0); 
+        FirstHeldCardObject.GetComponent<Image>().color = new Color(0, 0, 0, 0);
         if (selectedObject == null) { return; }
         if (selectedCardStack != null && selectedObject.card.isStacked && !selectedObject.card.isHidden || (hoveredObject != null && (selectedObject.transform.parent == hoveredObject.transform.parent || hoveredObject.gameObject.name == "CardShow" || hoveredObject.gameObject.name == "MainDeck" || hoveredObject.card.isStacked)) || (selectedCardStack != null && hoveredObject == null))
         {
@@ -194,7 +191,7 @@ public class CardHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         if (hoveredObject == null || selectedObject == hoveredObject || (hoveredObject != null && (hoveredObject.gameObject.name == "CardShow" || hoveredObject.gameObject.name == "MainDeck" || hoveredObject.card.isStacked)))
         {
             selectedObject.gameObject.GetComponent<Image>().enabled = true;
-           
+
         }
         if (transform.childCount > 1)
         {
@@ -212,7 +209,7 @@ public class CardHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         {
             if (i == 0)
             {
-                cardStack[i].GetComponent<Image>().color = new Color(0,0,0,0);
+                cardStack[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
             }
             else
             {
@@ -257,7 +254,7 @@ public class CardHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
             {
                 await ApplyToBaseDeck(gameObject);
                 return;
-            }           
+            }
         }
         if (card != null && gameObject.name.Contains("Set"))
         {
@@ -304,9 +301,9 @@ public class CardHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
                 }
                 await ApplySelectedCard(hoveredCard, cardObject, targetSet);
                 return;
-                
+
             }
-           
+
         }
     }
 
@@ -335,7 +332,7 @@ public class CardHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
                 selectedObject.gameObject.GetComponent<Image>().enabled = true;
             }
             return;
-        }    
+        }
         if (selectedCardStack != null) { return; }
         if (MainDeck.UsedCards.Contains(applyCardFromHold))
         {
@@ -345,7 +342,7 @@ public class CardHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         }
         else if (selectedObject != null)
         {
-           
+
             var selectedSet = selectedObject.transform.parent.GetComponent<SetDeck>();
             selectedObject.gameObject.SetActive(false);
             selectedSet.Cards.Remove(applyCardFromHold);
@@ -359,7 +356,7 @@ public class CardHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     private async UniTask ApplyFromBaseDeck(CardObject hoveredCard, CardObject cardObject, SetDeck targetSet)
     {
         if (selectedBaseDeck == null) { return; }
-       
+
         targetSet.isTarget = true;
         await UniTask.WaitUntil(() => { return Input.GetMouseButtonUp(0); });
         if (!targetSet.isTarget) { return; }
@@ -389,7 +386,7 @@ public class CardHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     }
 
     private async UniTask ApplyShownCard(CardObject hoveredCard, CardObject cardObject, SetDeck targetSet)
-    {        
+    {
         targetSet.isTarget = true;
         await UniTask.WaitUntil(() => { return Input.GetMouseButtonUp(0); });
         CardObject setCard = targetSet.GetActiveCard();
@@ -402,7 +399,7 @@ public class CardHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         var hoveredObj = hoveredCard.gameObject;
         if (setCard == null || hoveredCard.card.isStacked || !(IsSuitValid(hoveredCard.card) && IsNumValid(hoveredCard.card)))
         {
-           // Debug.Log($"Hovered Card: {hoveredCard.card.CardSuit} & {hoveredCard.card.CardNum.Num} \n Set Card: {card.CardSuit} & {card.CardNum.Num}");
+            // Debug.Log($"Hovered Card: {hoveredCard.card.CardSuit} & {hoveredCard.card.CardNum.Num} \n Set Card: {card.CardSuit} & {card.CardNum.Num}");
             ShowCard.ChangeCardFront(1, true);
             targetSet.CheckActiveCard();
             return;
@@ -455,9 +452,9 @@ public class CardHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
     private async UniTask ApplyCardStack(CardObject hoveredCard, CardObject cardObject, SetDeck targetSet)
     {
-        if (selectedObject == null && (selectedObject.card.isHidden || !selectedObject.card.isStacked)) 
+        if (selectedObject == null && (selectedObject.card.isHidden || !selectedObject.card.isStacked))
         {
-            return; 
+            return;
         }
         targetSet.isTarget = true;
         await UniTask.WaitUntil(() => { return Input.GetMouseButtonUp(0); });
@@ -525,7 +522,7 @@ public class CardHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
             {
                 selectedObject.gameObject.GetComponent<Image>().enabled = true;
             }
-            
+
             return;
         }
         if (selectedCardStack != null)
@@ -591,7 +588,7 @@ public class CardHold : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         //if (transform.GetComponent<Rigidbody2D>().IsTouchingLayers()) { return; }
         //Debug.Log("Exited collider: " + collider2D.name);
         hoveredObject = null;
-        cardObservable.Value = null;      
+        cardObservable.Value = null;
     }
 
     bool IsSuitValid(Card cardHover)
